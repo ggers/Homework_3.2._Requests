@@ -64,11 +64,13 @@ if __name__ == '__main__':
     print(f"В данной директории присутствуют следующие файлы: {file_list}")
     from_file = input('Введите имя целевого файла\n')
     to_dir = input(f'Введите адрес целевой директории, Пробел для содания субдиректории "Result" в текущей лиректории {current_dir}\n')
+    from_lang = input(f'Введите язык исходного файла:\n')
+    to_lang = input(f'Введите язык целевого файла:\n')
     if to_dir == " ":
         to_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Result")
-        print(f"Начинаем перевод файлов в директории {to_dir}")
+        print(f"Начинаем создание файлов в директории {to_dir}")
     else:
-        print(f"Начинаем перевод файлов в директории {to_dir}")
+        print(f"Начинаем создание файлов в директории {to_dir}")
     create_subdirectory(to_dir)
-    create_file_txt(os.path.join(to_dir, from_file), translate_it(open_file_txt(os.path.join(from_dir, from_file)), lang="ru"))
+    create_file_txt(os.path.join(to_dir, from_file), translate_it(open_file_txt(os.path.join(from_dir, from_file)), from_lang + "-" + to_lang))
     print("Проверяем содержимое получившегося файла\n", open_file_txt(os.path.join(to_dir, from_file)))
